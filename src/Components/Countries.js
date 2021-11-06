@@ -11,36 +11,38 @@ const Countries = () => {
     const response = await fetch(apiUrl);
     const countries = await response.json();
     setCountries(countries);
-    console.log(countries);
+    //console.log(countries);
   };
-
+  //returning country data
   useEffect(() => {
     getCountries();
   }, []);
   return (
-    <div>
-      {countries.map((country) => {
-        const { name, region, population, capital, flags, latlng } = country;
-        return (
-          <article key={latlng}>
-            <div>
-              <img src={flags["png"]} alt={name} />
-              <h1>{name["common"]}</h1>
-              <h3>
-                Continent:<span> {region}</span>
-              </h3>
-              <h3>
-                Capital: <span> {capital}</span>
-              </h3>
-              <h3>
-                Population:
-                <span> {population}</span>
-              </h3>
-            </div>
-          </article>
-        );
-      })}
-    </div>
+    <>
+      <section className="grid">
+        {countries.map((country) => {
+          const { name, region, population, capital, flags, latlng } = country;
+          return (
+            <article key={latlng}>
+              <div className="country-container">
+                <img src={flags["png"]} alt={name} />
+                <h3>{name["common"]}</h3>
+                <h4>
+                  Continent:<span> {region}</span>
+                </h4>
+                <h4>
+                  Capital: <span> {capital}</span>
+                </h4>
+                <h4>
+                  Population:
+                  <span> {population}</span>
+                </h4>
+              </div>
+            </article>
+          );
+        })}
+      </section>
+    </>
   );
 };
 
