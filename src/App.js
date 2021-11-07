@@ -1,15 +1,14 @@
 import React from "react";
-import Countries from "./Components/Countries";
-import { Filter } from "./Components/Filter";
 import { Header } from "./Components/Header";
+import { CountryPageRoute, HomepageRoute } from "./Routes/";
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
-      <Filter />
-      <Countries />
-    </div>
+      <HomepageRoute />
+      <CountryPageRoute />
+    </>
   );
 }
 

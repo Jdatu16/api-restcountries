@@ -1,0 +1,78 @@
+:root {
+  --clr-background: rgb(29, 72, 80);
+  --clr-text: rgb(201, 207, 211);
+  --clr-container-background: rgb(36, 86, 95);
+  --clr-header-background: rgb(16, 62, 70);
+  --clr-btn-background: rgb(37, 72, 112);
+  --clr-btn-background-hover: rgb(25, 116, 66);
+}
+
+.countryPage-container {
+  margin-top: 70px;
+}
+
+@media (max-width: 870px) {
+  .countryPage-container {
+    margin-top: 106px;
+  }
+}
+.prev-page {
+  margin-left: 10px;
+  font-size: 20px;
+  color: rgb(110, 110, 110);
+  text-decoration: none;
+}
+.prev-page :hover {
+  transform: scale(1.2);
+}
+
+.country-container {
+  font-family: "Roboto", sans-serif;
+  color: var(--clr-text);
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.country {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--clr-container-background);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+@media (max-width: 824px) {
+  .country {
+    display: flex;
+    flex-direction: column;
+  }
+  .country-flag {
+    margin-bottom: 20px;
+  }
+}
+
+.country-flag > img {
+  width: 400px;
+  height: 230px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 10px rgba(27, 25, 25, 0.349);
+}
+.country-details {
+  margin-left: 3vw;
+  font-size: 25px;
+}
+
+.country-details > h2 {
+  margin-bottom: 4vh;
+}
+
+.country-details > h5 {
+  margin-bottom: 1.6vh;
+}
+
+.country-details > h5 > span {
+  font-style: italic;
+  font-weight: lighter;
+}

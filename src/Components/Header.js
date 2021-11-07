@@ -1,9 +1,15 @@
+import { NavLink } from "react-router-dom";
+
 export const Header = () => {
   return (
     <>
       <header className="header">
         <div>
-          <h1>RestCountries Final Poject</h1>
+          <h1>
+            <NavLink className="navlink" to="/">
+              Country Checker
+            </NavLink>
+          </h1>
         </div>
         <div>
           <form className="form-st search">
@@ -11,13 +17,13 @@ export const Header = () => {
               type="serch"
               name="search"
               id="search"
-              placeholder="Type Country Name"
+              placeholder="Search"
             />
           </form>
         </div>
         <div className="buttons">
           <button className="btn">Sign up</button>
-          <button className="button">Log in</button>
+          <button className="btn">Log in</button>
         </div>
       </header>
     </>
