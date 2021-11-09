@@ -61,18 +61,38 @@
 }
 .country-details {
   margin-left: 3vw;
-  font-size: 25px;
 }
 
 .country-details > h2 {
   margin-bottom: 4vh;
+  font-size: 40px;
 }
 
 .country-details > h5 {
   margin-bottom: 1.6vh;
+  font-size: 20px;
 }
 
 .country-details > h5 > span {
   font-style: italic;
   font-weight: lighter;
+}
+
+@media (max-width: 460px) {
+  .country-flag > img {
+    width: 250px;
+    height: 130px;
+  }
+  .country {
+    padding: 10px;
+  }
+  .country-details {
+    width: 270px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.borders > span {
+  margin-left: 10px;
 }

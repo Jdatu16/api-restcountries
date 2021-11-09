@@ -1,10 +1,20 @@
-import { Route, Routes as Switch } from "react-router";
+import { Route, Routes } from "react-router";
 import { Countries } from "../Components";
 
-export const HomepageRoute = () => {
+export const HomepageRoute = (props) => {
   return (
-    <Switch>
-      <Route exact path="/" element={<Countries />} />
-    </Switch>
+    <Routes>
+      <Route
+        exact
+        path="/home"
+        element={
+          <Countries
+            removeCountry={props.removeData}
+            countries={props.data}
+            searchTerm={props.searchTerm}
+          />
+        }
+      />
+    </Routes>
   );
 };

@@ -1,29 +1,24 @@
 import { NavLink } from "react-router-dom";
-
-export const Header = () => {
+import { Search } from "./Search";
+export const Header = (props) => {
   return (
     <>
       <header className="header">
         <div>
           <h1>
-            <NavLink className="navlink" to="/">
+            <NavLink className="navlink" to="/home">
               Country Checker
             </NavLink>
           </h1>
         </div>
-        <div>
-          <form className="form-st search">
-            <input
-              type="serch"
-              name="search"
-              id="search"
-              placeholder="Search"
-            />
-          </form>
-        </div>
+        {<Search setSearchTerm={props.setSearchTerm} />}
         <div className="buttons">
-          <button className="btn">Sign up</button>
-          <button className="btn">Log in</button>
+          <NavLink to="/signup" className="button btn">
+            Sign up
+          </NavLink>
+          <NavLink to="/login" className="button btn">
+            Log in
+          </NavLink>
         </div>
       </header>
     </>

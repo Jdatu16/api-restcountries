@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import "../country.css";
+import "../css/country.css";
 
 export const CountryPage = () => {
   const [country, setCountry] = useState([]);
@@ -23,7 +23,7 @@ export const CountryPage = () => {
 
   return (
     <div className="countryPage-container">
-      <Link className="prev-page" to="/">
+      <Link className="prev-page" to="/home">
         <i className="fas fa-arrow-left"> Back</i>
       </Link>
       <section className="country-container">
@@ -57,7 +57,12 @@ export const CountryPage = () => {
                 <h5>
                   Subcontinent: <span> {subregion}</span>
                 </h5>
-                <h5>Borders: {borders}</h5>
+                <h3 className="borders">
+                  Neighbors:
+                  {borders.map((border) => {
+                    return <span key={border}>{border}</span>;
+                  })}
+                </h3>
               </div>
             </article>
           );
