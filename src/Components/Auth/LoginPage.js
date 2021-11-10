@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { AUTH_TOKEN } from "../../constants/localStorageConstants";
+import { AUTH_STATUS, AUTH_TOKEN } from "../../constants/localStorageConstants";
 import { HOME_PATH } from "../../constants/routeConstants";
 
 import "../../css/auth.css";
-import { saveLocalItem } from "../../Helpers/localStorage";
+import { saveLocalItem, getLocalItem } from "../../Helpers/localStorage";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,26 +19,18 @@ export const LoginPage = () => {
       email,
       password,
     };
+    const savedUser = getLocalItem(AUTH_TOKEN);
     console.log(loginData);
-    console.log(process.env.REACT_APP_API_URL);
-
-    const fetchToken = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
-      const result = await response.json();
-      if (result.token) {
-        saveLocalItem(AUTH_TOKEN, result.token);
-        navigate(HOME_PATH);
-        window.location.reload();
-      }
-    };
-    fetchToken();
+    console.log(savedUser);
+    if (
+      loginData.email === savedUser.email &&
+      loginData.password === savedUser.password
+    ) {
+      saveLocalItem(AUTH_STATUS, savedUser);
+      navigate(HOME_PATH);
+    } else {
+      alert("wrong email/password");
+    }
   };
 
   return (
@@ -47,7 +39,7 @@ export const LoginPage = () => {
         <div className="login-title">
           <h3>Login Page</h3>
         </div>
-        <pre>"email": "eve.holt@reqres.in", "password": "cityslicka" </pre>
+        <pre>Please Enter Your Email And Passowrd</pre>
         <input
           className="auth-input"
           type="Email"

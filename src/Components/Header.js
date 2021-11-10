@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
-import { AUTH_TOKEN } from "../constants/localStorageConstants";
+import { AUTH_STATUS, AUTH_TOKEN } from "../constants/localStorageConstants";
 import {
   HOME_PATH,
   LOGIN_PAGE_PATH,
@@ -12,7 +12,7 @@ import { Search } from "./Search";
 
 export const Header = (props) => {
   const navigate = useNavigate();
-  const loggedIn = checkLocalStorage(AUTH_TOKEN);
+  const loggedIn = checkLocalStorage(AUTH_STATUS);
 
   const guestLinks = () => {
     return (
@@ -30,8 +30,8 @@ export const Header = (props) => {
   const LogOut = (e) => {
     e.preventDefault();
     removeLocalItem(AUTH_TOKEN);
+    removeLocalItem(AUTH_STATUS);
     navigate(HOME_PATH);
-    window.location.reload();
   };
 
   const userLinks = () => {

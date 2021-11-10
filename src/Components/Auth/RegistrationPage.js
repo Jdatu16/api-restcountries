@@ -1,18 +1,37 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { AUTH_TOKEN } from "../../constants/localStorageConstants";
+import { LOGIN_PAGE_PATH } from "../../constants/routeConstants";
 
 import "../../css/auth.css";
+import { saveLocalItem } from "../../Helpers/localStorage";
 
 export const RegistrationPage = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [tel, setTel] = useState("");
+
+  const OnSubmit = (event) => {
+    event.preventDefault();
+
+    const registrationData = {
+      email,
+      password,
+      tel,
+    };
+
+    saveLocalItem(AUTH_TOKEN, registrationData);
+    navigate(LOGIN_PAGE_PATH);
+  };
 
   return (
-    <form className="auth-window">
+    <form onSubmit={OnSubmit} className="auth-window">
       <div className="auth-container">
         <div className="login-title">
           <h3>Registration Page</h3>
         </div>
-        <pre>"email": "eve.holt@reqres.in", "password": "cityslicka" </pre>
         <input
           className="auth-input"
           type="Email"
@@ -37,6 +56,19 @@ export const RegistrationPage = () => {
             setPassword(pass.target.value);
           }}
           value={password}
+          required
+        />
+        <input
+          className="auth-input"
+          type="tel"
+          name="tel"
+          id="tel"
+          placeholder="Enter Phone Number"
+          autoComplete="new-tel"
+          onChange={(tel) => {
+            setTel(tel.target.value);
+          }}
+          value={tel}
           required
         />
         <button className="button auth-btn" type="sumbit">
