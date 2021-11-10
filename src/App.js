@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "./Components/Header";
-import { CountryPageRoute, HomepageRoute } from "./Routes/";
-import { LoginPageRoute } from "./Routes/LoginPageRoute";
-import { RegistrationPageRoute } from "./Routes/RegistrationPageRoute";
+import {
+  CountryPageRoute,
+  HomepageRoute,
+  LoginPageRoute,
+  RegistrationPageRoute,
+  ProfilePageRoute,
+} from "./Routes/";
 
 function App() {
   //returning country data
@@ -38,6 +42,7 @@ function App() {
       <CountryPageRoute />
       <LoginPageRoute />
       <RegistrationPageRoute />
+      <ProfilePageRoute />
     </>
   );
 }

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { AUTH_TOKEN } from "../../constants/localStorageConstants";
+import { HOME_PATH } from "../../constants/routeConstants";
 
 import "../../css/auth.css";
+import { saveLocalItem } from "../../Helpers/localStorage";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -30,7 +33,9 @@ export const LoginPage = () => {
       });
       const result = await response.json();
       if (result.token) {
-        navigate("/home");
+        saveLocalItem(AUTH_TOKEN, result.token);
+        navigate(HOME_PATH);
+        window.location.reload();
       }
     };
     fetchToken();
