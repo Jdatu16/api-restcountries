@@ -1,6 +1,6 @@
 export const Search = (props) => {
   return (
-    <div>
+    <div className="search-container">
       <form className="form-st search">
         <input
           type="serch"

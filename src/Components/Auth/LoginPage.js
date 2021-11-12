@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { AUTH_STATUS, AUTH_TOKEN } from "../../constants/localStorageConstants";
+import { AUTH_STATUS } from "../../constants/localStorageConstants";
 import { HOME_PATH } from "../../constants/routeConstants";
 
 import "../../css/auth.css";
-import { saveLocalItem, getLocalItem } from "../../Helpers/localStorage";
+import {
+  saveLocalItem,
+  getLocalItem,
+  checkLocalStorage,
+} from "../../Helpers/localStorage";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,10 +23,11 @@ export const LoginPage = () => {
       email,
       password,
     };
-    const savedUser = getLocalItem(AUTH_TOKEN);
+    const savedUser = getLocalItem(JSON.stringify(loginData.email));
     console.log(loginData);
     console.log(savedUser);
     if (
+      checkLocalStorage(JSON.stringify(loginData.email)) &&
       loginData.email === savedUser.email &&
       loginData.password === savedUser.password
     ) {
@@ -41,6 +46,7 @@ export const LoginPage = () => {
         </div>
         <pre>Please Enter Your Email And Passowrd</pre>
         <input
+          data-testid="input"
           className="auth-input"
           type="Email"
           name="Email"
@@ -54,6 +60,8 @@ export const LoginPage = () => {
           required
         />
         <input
+          data-testid="input"
+          pattern="[a-zA-Z0-9-]+"
           className="auth-input"
           type="Password"
           name="Parssword"
@@ -66,7 +74,11 @@ export const LoginPage = () => {
           value={password}
           required
         />
-        <button className="button auth-btn" type="sumbit">
+        <button
+          data-testid="submitButton"
+          className="button auth-btn"
+          type="sumbit"
+        >
           Log in
         </button>
       </div>

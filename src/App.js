@@ -8,7 +8,7 @@ import {
   ProfilePageRoute,
 } from "./Routes/";
 
-function App() {
+export const App = () => {
   //returning country data
   const apiUrl = "https://restcountries.com/v3.1/all";
   const [countries, setCountries] = useState([]);
@@ -45,6 +45,4 @@ function App() {
       <ProfilePageRoute />
     </>
   );
-}
-
-export default App;
+};

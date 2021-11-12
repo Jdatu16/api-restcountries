@@ -22,7 +22,7 @@ export const CountryPage = () => {
   }, []);
 
   return (
-    <div className="countryPage-container">
+    <div data-testid="countryPage-container" className="countryPage-container">
       <Link className="prev-page" to={HOME_PATH}>
         <i className="fas fa-arrow-left"> Back</i>
       </Link>
@@ -57,12 +57,14 @@ export const CountryPage = () => {
                 <h5>
                   Subcontinent: <span> {subregion}</span>
                 </h5>
-                <h3 className="borders">
-                  Neighbors:
-                  {borders.map((border) => {
-                    return <span key={border}>{border}</span>;
-                  })}
-                </h3>
+                {borders ? (
+                  <div className="borders">
+                    Neighbors:
+                    {borders.map((border) => {
+                      return <span key={border}>{border}</span>;
+                    })}
+                  </div>
+                ) : null}
               </div>
             </article>
           );

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
-import { AUTH_STATUS, AUTH_TOKEN } from "../constants/localStorageConstants";
+import { AUTH_STATUS } from "../constants/localStorageConstants";
 import {
   HOME_PATH,
   LOGIN_PAGE_PATH,
@@ -29,7 +29,6 @@ export const Header = (props) => {
 
   const LogOut = (e) => {
     e.preventDefault();
-    removeLocalItem(AUTH_TOKEN);
     removeLocalItem(AUTH_STATUS);
     navigate(HOME_PATH);
   };

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { AUTH_TOKEN } from "../../constants/localStorageConstants";
 import { LOGIN_PAGE_PATH } from "../../constants/routeConstants";
 
 import "../../css/auth.css";
@@ -22,7 +21,7 @@ export const RegistrationPage = () => {
       tel,
     };
 
-    saveLocalItem(AUTH_TOKEN, registrationData);
+    saveLocalItem(JSON.stringify(registrationData.email), registrationData);
     navigate(LOGIN_PAGE_PATH);
   };
 
@@ -30,9 +29,10 @@ export const RegistrationPage = () => {
     <form onSubmit={OnSubmit} className="auth-window">
       <div className="auth-container">
         <div className="login-title">
-          <h3>Registration Page</h3>
+          <h3 data-testid="registrationPage-title">Registration Page</h3>
         </div>
         <input
+          data-testid="input"
           className="auth-input"
           type="Email"
           name="Email"
@@ -46,6 +46,8 @@ export const RegistrationPage = () => {
           required
         />
         <input
+          data-testid="input"
+          pattern="[a-zA-Z0-9-]+"
           className="auth-input"
           type="Password"
           name="Parssword"
