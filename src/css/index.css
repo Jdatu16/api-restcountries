@@ -62,6 +62,11 @@ body {
   cursor: pointer;
 }
 
+.profile {
+  padding: 10px;
+  width: auto;
+  height: 30px;
+}
 /* filter style*/
 .form-st > input {
   width: 200px;
@@ -185,6 +190,15 @@ span {
     width: 100px;
   }
 
+  .grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
   .header > .buttons {
     display: flex;
     flex-direction: column;
@@ -192,11 +206,8 @@ span {
   .header > .button {
     margin-top: 5px;
   }
-  .grid {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .btn {
+    margin-bottom: 2px;
   }
 }
 @media (max-width: 460px) {
@@ -206,6 +217,25 @@ span {
   .header {
     padding-left: 10px;
     padding-right: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .grid > article {
+    width: 260px;
+  }
+  .countries-flag {
+    width: 230px;
+  }
+  .countries-container {
+    width: 260px;
+  }
+  .search,
+  .search > input {
+    width: 80px;
+  }
+  .search-container {
+    margin-right: 2px;
   }
 }
 

@@ -61,6 +61,7 @@
 
 .auth-btn:hover {
   background-color: rgb(36, 128, 36);
+  cursor: pointer;
 }
 
 @media (max-width: 550px) {
@@ -70,4 +71,11 @@
   .auth-input {
     width: 200px;
   }
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+  color: var(--clr-text);
 }

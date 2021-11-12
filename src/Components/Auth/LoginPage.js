@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { AUTH_STATUS } from "../../constants/localStorageConstants";
+import { HOME_PATH } from "../../constants/routeConstants";
 
 import "../../css/auth.css";
+import {
+  saveLocalItem,
+  getLocalItem,
+  checkLocalStorage,
+} from "../../Helpers/localStorage";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,24 +23,19 @@ export const LoginPage = () => {
       email,
       password,
     };
+    const savedUser = getLocalItem(JSON.stringify(loginData.email));
     console.log(loginData);
-    console.log(process.env.REACT_APP_API_URL);
-
-    const fetchToken = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
-      const result = await response.json();
-      if (result.token) {
-        navigate("/home");
-      }
-    };
-    fetchToken();
+    console.log(savedUser);
+    if (
+      checkLocalStorage(JSON.stringify(loginData.email)) &&
+      loginData.email === savedUser.email &&
+      loginData.password === savedUser.password
+    ) {
+      saveLocalItem(AUTH_STATUS, savedUser);
+      navigate(HOME_PATH);
+    } else {
+      alert("wrong email/password");
+    }
   };
 
   return (
@@ -42,8 +44,9 @@ export const LoginPage = () => {
         <div className="login-title">
           <h3>Login Page</h3>
         </div>
-        <pre>"email": "eve.holt@reqres.in", "password": "cityslicka" </pre>
+        <pre>Please Enter Your Email And Passowrd</pre>
         <input
+          data-testid="input"
           className="auth-input"
           type="Email"
           name="Email"
@@ -57,6 +60,8 @@ export const LoginPage = () => {
           required
         />
         <input
+          data-testid="input"
+          pattern="[a-zA-Z0-9-]+"
           className="auth-input"
           type="Password"
           name="Parssword"
@@ -69,7 +74,11 @@ export const LoginPage = () => {
           value={password}
           required
         />
-        <button className="button auth-btn" type="sumbit">
+        <button
+          data-testid="submitButton"
+          className="button auth-btn"
+          type="sumbit"
+        >
           Log in
         </button>
       </div>

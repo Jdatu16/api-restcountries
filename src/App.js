@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "./Components/Header";
-import { CountryPageRoute, HomepageRoute } from "./Routes/";
-import { LoginPageRoute } from "./Routes/LoginPageRoute";
-import { RegistrationPageRoute } from "./Routes/RegistrationPageRoute";
+import {
+  CountryPageRoute,
+  HomepageRoute,
+  LoginPageRoute,
+  RegistrationPageRoute,
+  ProfilePageRoute,
+} from "./Routes/";
 
-function App() {
+export const App = () => {
   //returning country data
   const apiUrl = "https://restcountries.com/v3.1/all";
   const [countries, setCountries] = useState([]);
@@ -38,8 +42,7 @@ function App() {
       <CountryPageRoute />
       <LoginPageRoute />
       <RegistrationPageRoute />
+      <ProfilePageRoute />
     </>
   );
-}
-
-export default App;
+};

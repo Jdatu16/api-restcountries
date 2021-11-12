@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { HOME_PATH } from "../constants/routeConstants";
 
 import "../css/country.css";
 
@@ -9,21 +10,20 @@ export const CountryPage = () => {
 
   // getting Country Data
 
-  const getCountryData = async () => {
-    const response = await fetch(
-      `https://restcountries.com/v3.1/capital/${capital}`
-    );
-    const country = await response.json();
-    setCountry(country);
-  };
-
   useEffect(() => {
+    const getCountryData = async () => {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/capital/${capital}`
+      );
+      const country = await response.json();
+      setCountry(country);
+    };
     getCountryData();
   }, []);
 
   return (
-    <div className="countryPage-container">
-      <Link className="prev-page" to="/home">
+    <div data-testid="countryPage-container" className="countryPage-container">
+      <Link className="prev-page" to={HOME_PATH}>
         <i className="fas fa-arrow-left"> Back</i>
       </Link>
       <section className="country-container">
@@ -57,12 +57,14 @@ export const CountryPage = () => {
                 <h5>
                   Subcontinent: <span> {subregion}</span>
                 </h5>
-                <h3 className="borders">
-                  Neighbors:
-                  {borders.map((border) => {
-                    return <span key={border}>{border}</span>;
-                  })}
-                </h3>
+                {borders ? (
+                  <div className="borders">
+                    Neighbors:
+                    {borders.map((border) => {
+                      return <span key={border}>{border}</span>;
+                    })}
+                  </div>
+                ) : null}
               </div>
             </article>
           );

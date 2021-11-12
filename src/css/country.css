@@ -53,6 +53,21 @@
   }
 }
 
+@media (max-width: 460px) {
+  .borders {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .borders > span {
+    margin-bottom: 4px;
+  }
+}
+@media (max-width: 320px) {
+  .country {
+    width: 270px;
+  }
+}
+
 .country-flag > img {
   width: 400px;
   height: 230px;

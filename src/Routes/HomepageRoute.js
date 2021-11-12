@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router";
 import { Countries } from "../Components";
+import { HOME_PATH } from "../constants/routeConstants";
 
 export const HomepageRoute = (props) => {
   return (
     <Routes>
       <Route
         exact
-        path="/home"
+        path={HOME_PATH}
         element={
           <Countries
             removeCountry={props.removeData}
