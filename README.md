@@ -1,3 +1,3 @@
-<h1>Digital Academy Final Project</h1>
+<h1>Rest Countries Api</h1>
 
 Live Server -https://restcoutntries-project.netlify.app/
